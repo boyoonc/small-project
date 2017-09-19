@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <title>please work small app</title>
+    <script src="/jquery/jquery.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+    
+    <form id="add-list-form" action = "/send" method = "POST" > 
+      <!-- <input type="submit" style="display: none" /> -->
+      Input something 
+      <input id ="add-list" name="for-reals" value = ""> 
+    </form>
+
+    <ul id="thing-list">
+      
+    </ul>
+
+
+
+<!-- {{data}} workssss -->
+
+    <script>
+    //// var print = {{data}} //this doesn't work because it should be in html not js!!!
+
+    // $(function(){
+    //   // console.log(print)
+    //   $("#add-list").on("keydown", function(event){
+    //     // event.preventDefault()
+        
+    //     // if(event.keyCode === 49){//for pressing 1
+    //     if(event.keyCode === 13){
+    //       // event.preventDefault()
+    //       // alert($(this.val()))
+    //       let input = document.querySelector('input').value
+    //       console.log(input)
+    //       $.ajax({
+    //         url:'/send',
+    //         type: 'POST',
+    //         data: {'for-reals': input}
+    //       })
+    //       .then(function(allThings){
+    //         // console.log(allThings) //it's a list
+    //         allThings.forEach(function(element){
+    //           var list = document.getElementById('thing-list')
+    //           var itemValue = element.name
+    //           var toAdd = document.createElement('li')
+    //           toAdd.appendChild(document.createTextNode(itemValue))
+    //           list.appendChild(toAdd)
+    //         })
+    //       })
+    //     }
+    //   })
+    // })
+
+
+    //seems to need two ajax calls -- one for adding the data, one for getting everything. with their own routes. do another time
+    $("#add-list").on("keydown", function(event){
+      if(event.keyCode === 13){
+      event.preventDefault
+      let input = document.querySelector('input').value
+  
+          $.ajax({
+            url:'/send',
+            type: 'POST',
+            data: {'for-reals': input}
+          })
+          .then(function(allThings){
+            allThings.forEach(function(element){
+              var list = document.getElementById('thing-list')
+              var itemValue = element.name
+              var toAdd = document.createElement('li')
+              toAdd.appendChild(document.createTextNode(itemValue))
+              list.appendChild(toAdd)
+            })
+          })
+      }
+    })
+
+    
+
+          
+        
+
+      
+
+    </script>
+
+
+  </body>
+</html>
